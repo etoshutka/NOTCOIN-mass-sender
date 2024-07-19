@@ -1,18 +1,4 @@
-import { sleep } from '@ton-community/blueprint';
-import { TonClient } from 'ton';
-import {
-    Address,
-    beginCell,
-    Cell,
-    Contract,
-    contractAddress,
-    ContractProvider,
-    Dictionary,
-    DictionaryValue,
-    Sender,
-    SendMode,
-    toNano,
-} from 'ton-core';
+import { Address, beginCell, Cell, Contract, contractAddress, ContractProvider, Dictionary, DictionaryValue, Sender, SendMode } from 'ton-core';
 
 export type Msg = {
     value: bigint;
@@ -69,24 +55,49 @@ export function massSenderConfigToCell(config: MassSenderConfig): Cell {
         .endCell();
 }
 
-export class MassSender implements Contract {
+export type JettonDistributorConfig = {
+    messages: Msg[];
+    total?: bigint;
+    admin: Address;
+    jettonMaster: Address;
+    jettonWalletCode: Cell;
+};
+
+export function jettonDistributorConfigToCell(config: JettonDistributorConfig): Cell {
+    return beginCell()
+        .storeUint(Date.now(), 64)
+        .storeCoins(
+            config.total !== undefined ? config.total : config.messages.map((msg) => msg.value).reduce((a, b) => a + b)
+        )
+        .storeUint(config.messages.length, 16)
+        .storeUint(0, 16)
+        .storeUint(0, 1)
+        .storeUint(0, 1) // ready_to_send
+        .storeAddress(config.admin)
+        .storeDict(messagesToDict(config.messages))
+        .storeAddress(config.jettonMaster)
+        .storeRef(config.jettonWalletCode) // empty jetton_wallet_code
+    .endCell();
+}
+
+export class JettonDistributor implements Contract {
     constructor(readonly address: Address, readonly init?: { code: Cell; data: Cell }) {}
 
     static createFromAddress(address: Address) {
-        return new MassSender(address);
+        return new JettonDistributor(address);
     }
 
-    static createFromConfig(config: MassSenderConfig, code: Cell, workchain = 0) {
-        const data = massSenderConfigToCell(config);
+    static createFromConfig(config: JettonDistributorConfig, code: Cell, workchain = 0) {
+        const data = jettonDistributorConfigToCell(config);
         const init = { code, data };
-        return new MassSender(contractAddress(workchain, init), init);
+        return new JettonDistributor(contractAddress(workchain, init), init);
     }
 
     async sendDeploy(provider: ContractProvider, via: Sender, value: bigint) {
         await provider.internal(via, {
             value,
             sendMode: SendMode.PAY_GAS_SEPARATELY,
-            body: Cell.EMPTY,
+            body: beginCell().endCell(),
         });
     }
 
@@ -100,39 +111,47 @@ export class MassSender implements Contract {
         });
     }
 
-    async sendStartSending(provider: ContractProvider, via: Sender, value: bigint) {
+    async sendSetJettonWalletCode(
+        provider: ContractProvider,
+        via: Sender,
+        opts: {
+            value: bigint;
+            jettonWalletCode: Cell;
+        }
+    ) {
         await provider.internal(via, {
-            value,
+            value: opts.value,
             sendMode: SendMode.PAY_GAS_SEPARATELY,
-            body: beginCell().storeUint(0x87654321, 32).endCell(),
+            body: beginCell()
+                .storeUint(0x54321678, 32)
+                .storeRef(opts.jettonWalletCode)
+            .endCell(),
         });
     }
 
-    async getHasFinished(provider: ContractProvider): Promise<boolean> {
+    async sendStartSending(
+        provider: ContractProvider,
+        via: Sender,
+        opts: {
+            value: bigint;
+        }
+    ) {
+        await provider.internal(via, {
+            value: opts.value,
+            sendMode: SendMode.PAY_GAS_SEPARATELY,
+            body: beginCell()
+                .storeUint(0x87654321, 32)
+            .endCell(),
+        });
+    }
+
+    async getHasFinished(provider: ContractProvider) {
         const result = await provider.get('has_finished', []);
         return result.stack.readBoolean();
     }
 
-    async getIsReadyToSend(provider: ContractProvider): Promise<boolean> {
+    async getIsReadyToSend(provider: ContractProvider) {
         const result = await provider.get('is_ready_to_send', []);
         return result.stack.readBoolean();
     }
-}
-
-export async function calculateJettonWalletAddress(minterAddress: string, ownerAddress: Address): Promise<Address> {
-    const client = new TonClient({
-        endpoint: "https://testnet.toncenter.com/api/v2/jsonRPC",
-    });
-    
-    await sleep(1500);
-    const response = await client.runMethod(Address.parse(minterAddress), "get_wallet_address", [
-        {
-            type: 'slice',
-            cell: 
-                beginCell()
-                    .storeAddress(ownerAddress)
-                .endCell()
-        }
-    ]);
-    return response.stack.readAddress();
 }
