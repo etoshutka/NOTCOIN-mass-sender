@@ -1,6 +1,6 @@
 #include "imports/stdlib.fc";
 
-const int ton_for_fee = 500000000;
+const int ton_for_fee = 50000000;
 const int op::start_sending = 0x87654321;
 const int op::process_messages = 0x23456789;
 const int op::set_jetton_wallet_code = 0x54321678;
@@ -74,7 +74,7 @@ slice calculate_user_jetton_wallet_address(slice owner_address, slice jetton_mas
     slice jetton_wallet = calculate_user_jetton_wallet_address(my_address(), jetton_master_address, jetton_wallet_code);
     
     send_raw_message(begin_cell()
-            .store_uint(0x18, 6) ;; bounce
+            .store_uint(0x10, 6) ;; unbounce
             .store_slice(jetton_wallet)
             .store_coins(ton_for_fee)
             .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)

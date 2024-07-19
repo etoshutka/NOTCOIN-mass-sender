@@ -2,8 +2,8 @@ import { Address, toNano } from 'ton-core';
 import { JettonDistributor } from '../wrappers/JettonDistr';
 import { NetworkProvider } from '@ton-community/blueprint';
 
-// Адрес развернутого контракта MassSender
-const MASS_SENDER_ADDRESS = 'kQDgnzDlOGWHoH_xDua9yXRemnChK2ox2HaQhIIlt8J1s18g';
+// Адрес развернутого контракта 
+const MASS_SENDER_ADDRESS = 'EQAJcIPZ0mZTPMk6UjEmFxla0DQRpV4EerdQz8IEigeuP1zq';
 
 export async function run(provider: NetworkProvider) {
     const massSenderAddress = Address.parse(MASS_SENDER_ADDRESS);
@@ -13,6 +13,6 @@ export async function run(provider: NetworkProvider) {
 
     // Отправляем достаточно TON для оплаты комиссий за отправку jetton-токенов
     await massSender.sendStartSending(provider.sender(), 
-    { value : toNano(1) })
+    { value : toNano("0.1") })
     console.log('Start sending initiated.');
 }

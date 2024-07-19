@@ -1,10 +1,10 @@
 import { Address, toNano, Cell, beginCell } from 'ton-core';
 import { compile, NetworkProvider, sleep } from '@ton-community/blueprint';
-import { JettonDistributor, Msg } from '../wrappers/JettonDistr'; // Убедитесь, что путь правильный
+import { JettonDistributor, Msg } from '../wrappers/JettonDistr'; 
 import { TonClient } from 'ton';
 import { calculateJettonWalletAddress } from '../wrappers/MassSender';
 
-const JETTON_MINTER_ADDRESS: string = "kQA25YwnFEi0h-i5e0x8rid4z7IS_c0gpR9AIvzcpKX8qVlc";
+const JETTON_MINTER_ADDRESS: string = "kQA6FoYeKvpCXj5qz0Ct2q6s4gdVv-gYm3A-5UkCqQh4YlYu"; // Мастер-контракт жетона
 
 async function getJettonData(minterAddress: string): Promise<{ totalSupply: bigint, int:bigint, adminAddress: Address, content: Cell, walletCode: Cell }> {
     const client = new TonClient({
@@ -67,7 +67,7 @@ export async function process(provider: NetworkProvider, messages: Msg[], jetton
 export async function run(provider: NetworkProvider) {
     let rawMessages: RawMessage = require('./transactions.json');
     let messages: Msg[] = [];
-    const jettonMaster = Address.parse('kQA25YwnFEi0h-i5e0x8rid4z7IS_c0gpR9AIvzcpKX8qVlc'); // Замените на реальный адрес jetton-мастера
+    const jettonMaster = Address.parse('kQA6FoYeKvpCXj5qz0Ct2q6s4gdVv-gYm3A-5UkCqQh4YlYu'); // Замените на реальный адрес jetton-мастера
 
     for (const [addr, amount] of Object.entries(rawMessages)) {
         const destination = Address.parse(addr);
