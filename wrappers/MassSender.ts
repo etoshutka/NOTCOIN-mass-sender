@@ -121,7 +121,7 @@ export class MassSender implements Contract {
 
 export async function calculateJettonWalletAddress(minterAddress: string, ownerAddress: Address): Promise<Address> {
     const client = new TonClient({
-        endpoint: "https://testnet.toncenter.com/api/v2/jsonRPC",
+        endpoint: "https://toncenter.com/api/v2/jsonRPC",
     });
     
     await sleep(1500);

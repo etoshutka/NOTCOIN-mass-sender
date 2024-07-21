@@ -8,7 +8,7 @@ const JETTON_MINTER_ADDRESS: string = "kQA6FoYeKvpCXj5qz0Ct2q6s4gdVv-gYm3A-5UkCq
 
 async function getJettonData(minterAddress: string): Promise<{ totalSupply: bigint, int:bigint, adminAddress: Address, content: Cell, walletCode: Cell }> {
     const client = new TonClient({
-        endpoint: "https://testnet.toncenter.com/api/v2/jsonRPC",
+        endpoint: "https://toncenter.com/api/v2/jsonRPC",
     });
     
     await sleep(1500);
