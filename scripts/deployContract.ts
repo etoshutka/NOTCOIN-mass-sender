@@ -54,7 +54,7 @@ export async function process(provider: NetworkProvider, messages: Msg[], jetton
         )
     );
 
-    const totalFees = toNano('0.1') * BigInt(messages.length);
+    const totalFees = toNano('0.1') // * BigInt(messages.length);
 
     await massSender.sendDeploy(
         provider.sender(),
@@ -67,7 +67,7 @@ export async function process(provider: NetworkProvider, messages: Msg[], jetton
 export async function run(provider: NetworkProvider) {
     let rawMessages: RawMessage = require('./transactions.json');
     let messages: Msg[] = [];
-    const jettonMaster = Address.parse('kQA6FoYeKvpCXj5qz0Ct2q6s4gdVv-gYm3A-5UkCqQh4YlYu'); // Замените на реальный адрес jetton-мастера
+    const jettonMaster = Address.parse('kQA6FoYeKvpCXj5qz0Ct2q6s4gdVv-gYm3A-5UkCqQh4YlYu'); // Мастер-контракт жетона
 
     for (const [addr, amount] of Object.entries(rawMessages)) {
         const destination = Address.parse(addr);
