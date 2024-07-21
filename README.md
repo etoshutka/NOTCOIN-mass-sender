@@ -15,6 +15,9 @@
 Скрипты описаны в порядке их запуска, перед sendStart лучше проверить что наш контракт принял жетоны и флаг. Так как в этом сообщении отсылаются комиссии.
 
 Запуск скриптов :
+
 npm i
+
 npx blueprint build ( дважды , сначала JettonDistr , затем MassSender)
+
 npx blueprint run —mainnet —mnemonic deployContract(тут название скрипта)
