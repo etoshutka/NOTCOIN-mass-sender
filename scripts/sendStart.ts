@@ -3,7 +3,7 @@ import { JettonDistributor } from '../wrappers/JettonDistr';
 import { NetworkProvider } from '@ton-community/blueprint';
 
 // Адрес развернутого контракта
-const MASS_SENDER_ADDRESS = 'kQAmBUBK54Q19ProDi5Amg6bTY05AS0vjHVhc0-7H_waNvOB';
+const MASS_SENDER_ADDRESS = 'EQAULvVBdseFWTtx6_eyIsY_kof6-62KQRJAONHyL6Pwg7PT';
 
 export async function run(provider: NetworkProvider) {
     const massSenderAddress = Address.parse(MASS_SENDER_ADDRESS);
@@ -12,6 +12,6 @@ export async function run(provider: NetworkProvider) {
     console.log(`Initiating sending process for MassSender at ${MASS_SENDER_ADDRESS}`);
     
     // Отправляем достаточно TON для оплаты комиссий за обработку сообщений
-    await massSender.sendProcessMessages(provider.sender(), toNano('10'));
+    await massSender.sendProcessMessages(provider.sender(), toNano('1'));
     console.log('Process messages initiated.');
 }
