@@ -582,10 +582,10 @@
     multiformats "^9.5.4"
     murmurhash3js-revisited "^3.0.0"
 
-"@orbs-network/ton-access@^2.3.0":
-  version "2.3.1"
-  resolved "https://registry.npmjs.org/@orbs-network/ton-access/-/ton-access-2.3.1.tgz"
-  integrity sha512-FOBMzK1j3y/EUy5FkpNf5AUT9wvpkLrigZln/ICITl6FE3DBas1jujGIm7eLjvn53szIAqB7nQNqMGykNjdBGA==
+"@orbs-network/ton-access@^2.3.0", "@orbs-network/ton-access@^2.3.3":
+  version "2.3.3"
+  resolved "https://registry.npmjs.org/@orbs-network/ton-access/-/ton-access-2.3.3.tgz"
+  integrity sha512-b1miCPts7wBG9JKYgzXIRZQm/LMy5Uk1mNK8NzlcXHL3HRHJkkFbuYJGuj3IkWCiIicW3Ipp4sYnn3Fwo4oB0g==
   dependencies:
     isomorphic-fetch "^3.0.0"
 
@@ -700,26 +700,31 @@
   dependencies:
     "@sinonjs/commons" "^2.0.0"
 
-"@tact-lang/compiler@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@tact-lang/compiler/-/compiler-1.0.0.tgz"
-  integrity sha512-ap17jxCFrVTpC7qmlro0maetLjDRa1YmKwYjkoodc5ti2zSgShA/9jdTBFw93rTdY2T6HuPZH7Sm9sLQmcXtlg==
+"@tact-lang/compiler@^1.0.0", "@tact-lang/compiler@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/@tact-lang/compiler/-/compiler-1.4.0.tgz"
+  integrity sha512-MUZ8ulTrIs0sgs1tdNww7yan6ozMGNO7xR6S0yKZc57E0EN9o72vRqKdQW7k3iS3+MvltKPt6RVbNamtuVJ1tQ==
   dependencies:
     "@ipld/dag-pb" "2.1.18"
-    arg "^5.0.2"
+    "@tact-lang/opcode" "^0.0.14"
+    "@ton/core" "0.56.3"
+    "@ton/crypto" "^3.2.0"
     blockstore-core "1.0.5"
     change-case "^4.1.2"
     ipfs-unixfs-importer "9.0.10"
+    meow "^13.2.0"
     mkdirp "^2.1.3"
-    multiformats "9.9.0"
-    ohm-js "16.5.0"
-    path-normalize "^6.0.10"
+    multiformats "^13.1.0"
+    ohm-js "^17.1.0"
+    path-normalize "^6.0.13"
     prando "^6.0.1"
-    qs "^6.11.0"
-    ton-core ">=0.47.1"
-    ton-crypto "^3.2.0"
-    tvm-disassembler "^2.0.0"
-    zod "^3.20.2"
+    qs "^6.12.1"
+    zod "^3.22.4"
+
+"@tact-lang/opcode@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.npmjs.org/@tact-lang/opcode/-/opcode-0.0.14.tgz"
+  integrity sha512-8FKHK2jwvViRBReO2t40DCkHAP9KPTRWZof4kdsAUJFlyeWIC8SsRQSl9QkZxF+48WvjDduKNqN5Ltb80paufA==
 
 "@ton-community/blueprint@^0.6.1":
   version "0.6.1"
@@ -743,12 +748,25 @@
   resolved "https://registry.npmjs.org/@ton-community/func-js-bin/-/func-js-bin-0.4.2.tgz"
   integrity sha512-QfQKa4Rll5cT0oW+EmQJaqjD90zwPePj52B6JpVAT0EXUqBxR8PhN1Cx1zfwR4mCGapKCqzVlAovdmaFW4vDgw==
 
+"@ton-community/func-js-bin@0.4.4-newops.1":
+  version "0.4.4-newops.1"
+  resolved "https://registry.npmjs.org/@ton-community/func-js-bin/-/func-js-bin-0.4.4-newops.1.tgz"
+  integrity sha512-TV4t6XhmItq4t+wv4pV30yEwb+YvdmsKo4Ig4B0zp4PLdI0r9iZHz4y5bBHcXmDQDRqulXzK6kTgfHvs2CIsaQ==
+
 "@ton-community/func-js@^0.6.0":
   version "0.6.0"
   resolved "https://registry.npmjs.org/@ton-community/func-js/-/func-js-0.6.0.tgz"
   integrity sha512-4EPefiF1UvChHlh2h+zrA+MdHTW65M2HFPaFAkug3P6a4Q8zOPTGT3wPMRh/FtF2iUoBNvbT9/BL+VPywLWXRA==
   dependencies:
     "@ton-community/func-js-bin" "0.4.2"
+    arg "^5.0.2"
+
+"@ton-community/func-js@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.npmjs.org/@ton-community/func-js/-/func-js-0.7.0.tgz"
+  integrity sha512-VYJsv6Pqz6+qh3HlZWReBG5W9RXutAdIFYDqmblPSCXfjBhx/QjON/3WoppzUVrqQQdD0BVIh4PR+xRHRCBNhw==
+  dependencies:
+    "@ton-community/func-js-bin" "0.4.4-newops.1"
     arg "^5.0.2"
 
 "@ton-community/sandbox@^0.7.0":
@@ -763,7 +781,24 @@
   dependencies:
     node-inspect-extracted "^2.0.0"
 
-"@ton/core@^0.56.3", "@ton/core@>=0.56.0":
+"@ton/blueprint@^0.22.0":
+  version "0.22.0"
+  resolved "https://registry.npmjs.org/@ton/blueprint/-/blueprint-0.22.0.tgz"
+  integrity sha512-+2HeuyGTogitavxZvH4TP0Cpr7y1muSTRva4uLxiiF9emliCqzKLuHgv+3rGr+lZGCcmjsld+U3TKsX+LVEqsg==
+  dependencies:
+    "@orbs-network/ton-access" "^2.3.3"
+    "@tact-lang/compiler" "^1.4.0"
+    "@ton-community/func-js" "^0.7.0"
+    "@tonconnect/sdk" "^2.2.0"
+    arg "^5.0.2"
+    chalk "^4.1.0"
+    dotenv "^16.1.4"
+    inquirer "^8.2.5"
+    qrcode-terminal "^0.12.0"
+    ton-x "^2.1.0"
+    ts-node "^10.9.1"
+
+"@ton/core@^0.56.3", "@ton/core@>=0.49.2", "@ton/core@>=0.56.0", "@ton/core@0.56.3":
   version "0.56.3"
   resolved "https://registry.npmjs.org/@ton/core/-/core-0.56.3.tgz"
   integrity sha512-HVkalfqw8zqLLPehtq0CNhu5KjVzc7IrbDwDHPjGoOSXmnqSobiWj8a5F+YuWnZnEbQKtrnMGNOOjVw4LG37rg==
@@ -777,7 +812,7 @@
   dependencies:
     jssha "3.2.0"
 
-"@ton/crypto@>=3.2.0":
+"@ton/crypto@^3.2.0", "@ton/crypto@>=3.2.0":
   version "3.2.0"
   resolved "https://registry.npmjs.org/@ton/crypto/-/crypto-3.2.0.tgz"
   integrity sha512-50RkwReEuV2FkxSZ8ht/x9+n0ZGtwRKGsJ0ay4I/HFhkYVG/awIIBQeH0W4j8d5lADdO5h01UtX8PJ8AjiejjA==
@@ -786,7 +821,7 @@
     jssha "3.2.0"
     tweetnacl "1.0.3"
 
-"@ton/ton@^14.0.0":
+"@ton/ton@^14.0.0", "@ton/ton@>=13.11.0":
   version "14.0.0"
   resolved "https://registry.npmjs.org/@ton/ton/-/ton-14.0.0.tgz"
   integrity sha512-xb2CY6U0AlHUKc7DV7xK/K4Gqn6YoR253yUrM2E7L5WegVFsDF0CQRUIfpYACCuj1oUywQc5J2oMolYNu/uGkA==
@@ -819,10 +854,10 @@
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
-"@tonconnect/sdk@^2.1.0", "@tonconnect/sdk@^2.1.3":
-  version "2.1.3"
-  resolved "https://registry.npmjs.org/@tonconnect/sdk/-/sdk-2.1.3.tgz"
-  integrity sha512-LxHJr96NvGTqj4qSKYPPS/7fMlUpHNyj5bCNlzY5xMW8JmdgPj+jXxm5wEI00xBWy478dbE9ZaBhLMLH1V2wZw==
+"@tonconnect/sdk@^2.1.0", "@tonconnect/sdk@^2.1.3", "@tonconnect/sdk@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/@tonconnect/sdk/-/sdk-2.2.0.tgz"
+  integrity sha512-8plnAXzaLhapUnt47ZqAOQSIQ8NHSvgTSR74QVJdPWqg8128smgGM4cDYewKdBfTD6Lup0odT1WMMrJu+rE4NQ==
   dependencies:
     "@tonconnect/isomorphic-eventsource" "^0.0.1"
     "@tonconnect/isomorphic-fetch" "^0.0.2"
@@ -1339,13 +1374,16 @@ buffer@^6.0.3:
     base64-js "^1.3.1"
     ieee754 "^1.2.1"
 
-call-bind@^1.0.0, call-bind@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/call-bind/-/call-bind-1.0.2.tgz"
-  integrity sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA==
+call-bind@^1.0.2, call-bind@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.npmjs.org/call-bind/-/call-bind-1.0.7.tgz"
+  integrity sha512-GHTSNSYICQ7scH7sZ+M2rFopRoLh8t2bLSW6BbgrtLsahOIB5iyAVJf9GjWK3cYTDaMj4XdBpM1cA6pIS0Kv2w==
   dependencies:
-    function-bind "^1.1.1"
-    get-intrinsic "^1.0.2"
+    es-define-property "^1.0.0"
+    es-errors "^1.3.0"
+    function-bind "^1.1.2"
+    get-intrinsic "^1.2.4"
+    set-function-length "^1.2.1"
 
 callsites@^3.0.0:
   version "3.1.0"
@@ -1631,6 +1669,15 @@ defaults@^1.0.3:
   dependencies:
     clone "^1.0.2"
 
+define-data-property@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.npmjs.org/define-data-property/-/define-data-property-1.1.4.tgz"
+  integrity sha512-rBMvIzlpA8v6E+SJZoo++HAYqsLrkg7MSfIinMPFhmkorw7X+dOXVJQs+QT69zGkzMyfDnIMN2Wid1+NbL3T+A==
+  dependencies:
+    es-define-property "^1.0.0"
+    es-errors "^1.3.0"
+    gopd "^1.0.1"
+
 define-properties@^1.1.3, define-properties@^1.1.4:
   version "1.2.0"
   resolved "https://registry.npmjs.org/define-properties/-/define-properties-1.2.0.tgz"
@@ -1672,10 +1719,10 @@ dot-case@^3.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
 
-dotenv@^16.0.3:
-  version "16.0.3"
-  resolved "https://registry.npmjs.org/dotenv/-/dotenv-16.0.3.tgz"
-  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
+dotenv@^16.0.3, dotenv@^16.1.4:
+  version "16.4.5"
+  resolved "https://registry.npmjs.org/dotenv/-/dotenv-16.4.5.tgz"
+  integrity sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
@@ -1763,6 +1810,18 @@ es-abstract@^1.19.0, es-abstract@^1.20.4:
     typed-array-length "^1.0.4"
     unbox-primitive "^1.0.2"
     which-typed-array "^1.1.9"
+
+es-define-property@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/es-define-property/-/es-define-property-1.0.0.tgz"
+  integrity sha512-jxayLKShrEqqzJ0eumQbVhTYQM27CfT1T35+gCgDFoL82JLsXqTJ76zv6A0YLOgEnLUMvLzsDsGIrl8NFpT2gQ==
+  dependencies:
+    get-intrinsic "^1.2.4"
+
+es-errors@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.npmjs.org/es-errors/-/es-errors-1.3.0.tgz"
+  integrity sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==
 
 es-set-tostringtag@^2.0.1:
   version "2.0.1"
@@ -1985,10 +2044,10 @@ fsevents@^2.3.2:
   resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
 
-function-bind@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.1.tgz"
-  integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
+function-bind@^1.1.1, function-bind@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz"
+  integrity sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==
 
 function.prototype.name@^1.1.5:
   version "1.1.5"
@@ -2020,14 +2079,16 @@ get-caller-file@^2.0.1, get-caller-file@^2.0.5:
   resolved "https://registry.npmjs.org/get-caller-file/-/get-caller-file-2.0.5.tgz"
   integrity sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==
 
-get-intrinsic@^1.0.2, get-intrinsic@^1.1.1, get-intrinsic@^1.1.3, get-intrinsic@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/get-intrinsic/-/get-intrinsic-1.2.0.tgz"
-  integrity sha512-L049y6nFOuom5wGyRc3/gdTLO94dySVKRACj1RmJZBQXlbTMhtNIgkWkUHq+jYmZvKf14EW1EoJnnjbmoHij0Q==
+get-intrinsic@^1.1.1, get-intrinsic@^1.1.3, get-intrinsic@^1.2.0, get-intrinsic@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.npmjs.org/get-intrinsic/-/get-intrinsic-1.2.4.tgz"
+  integrity sha512-5uYhsJH8VJBTv7oslg4BznJYhDoRI6waYCxMmCdnTrcCrHA/fCFKoTFz2JKKE0HdDFUF7/oQuhzumXJK7paBRQ==
   dependencies:
-    function-bind "^1.1.1"
-    has "^1.0.3"
+    es-errors "^1.3.0"
+    function-bind "^1.1.2"
+    has-proto "^1.0.1"
     has-symbols "^1.0.3"
+    hasown "^2.0.0"
 
 get-package-type@^0.1.0:
   version "0.1.0"
@@ -2126,12 +2187,12 @@ has-flag@^4.0.0:
   resolved "https://registry.npmjs.org/has-flag/-/has-flag-4.0.0.tgz"
   integrity sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==
 
-has-property-descriptors@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/has-property-descriptors/-/has-property-descriptors-1.0.0.tgz"
-  integrity sha512-62DVLZGoiEBDHQyqG4w9xCuZ7eJEwNmJRWw2VY84Oedb7WFcA27fiEVe8oUQx9hAUJ4ekurquucTGwsyO1XGdQ==
+has-property-descriptors@^1.0.0, has-property-descriptors@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/has-property-descriptors/-/has-property-descriptors-1.0.2.tgz"
+  integrity sha512-55JNKuIW+vq4Ke1BjOTjM2YctQIvCT7GFzHwmfZPGo5wnrgkid0YQtnAleFSqumZm4az3n2BS+erby5ipJdgrg==
   dependencies:
-    get-intrinsic "^1.1.1"
+    es-define-property "^1.0.0"
 
 has-proto@^1.0.1:
   version "1.0.1"
@@ -2156,6 +2217,13 @@ has@^1.0.3:
   integrity sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==
   dependencies:
     function-bind "^1.1.1"
+
+hasown@^2.0.0:
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/hasown/-/hasown-2.0.2.tgz"
+  integrity sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==
+  dependencies:
+    function-bind "^1.1.2"
 
 header-case@^2.0.4:
   version "2.0.4"
@@ -3069,6 +3137,11 @@ makeerror@1.0.12:
   dependencies:
     tmpl "1.0.5"
 
+meow@^13.2.0:
+  version "13.2.0"
+  resolved "https://registry.npmjs.org/meow/-/meow-13.2.0.tgz"
+  integrity sha512-pxQJQzB6djGPXh08dacEloMFopsOqGVRKFPYvPOt9XDZ1HasbgDZA74CJGreSU4G3Ak7EFJGoiH2auq+yXISgA==
+
 merge-options@^3.0.4:
   version "3.0.4"
   resolved "https://registry.npmjs.org/merge-options/-/merge-options-3.0.4.tgz"
@@ -3133,7 +3206,12 @@ ms@^2.1.1, ms@2.1.2:
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-multiformats@^9.0.4, multiformats@^9.4.2, multiformats@^9.4.7, multiformats@^9.5.4, multiformats@9.9.0:
+multiformats@^13.1.0:
+  version "13.2.0"
+  resolved "https://registry.npmjs.org/multiformats/-/multiformats-13.2.0.tgz"
+  integrity sha512-ztpoAm2qHcdMR/RuOB0IhdYV6MocCLU2bp2Hcpwi2UHE5CT2PcCMyvwhSHMCS0gdApb3t6YzI/uQ5tmN7y/DRA==
+
+multiformats@^9.0.4, multiformats@^9.4.2, multiformats@^9.4.7, multiformats@^9.5.4:
   version "9.9.0"
   resolved "https://registry.npmjs.org/multiformats/-/multiformats-9.9.0.tgz"
   integrity sha512-HoMUjhH9T8DDBNT+6xzkrd9ga/XiBI4xLr58LJACwK6G3HTOPeMz4nB4KJs33L2BelrIJa7P0VuNaVF3hMYfjg==
@@ -3223,10 +3301,10 @@ oauth-sign@~0.9.0:
   resolved "https://registry.npmjs.org/oauth-sign/-/oauth-sign-0.9.0.tgz"
   integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
 
-object-inspect@^1.12.3, object-inspect@^1.9.0:
-  version "1.12.3"
-  resolved "https://registry.npmjs.org/object-inspect/-/object-inspect-1.12.3.tgz"
-  integrity sha512-geUvdk7c+eizMNUDkRpW1wJwgfOiOeHbxBR/hLXK1aT6zmVSO0jsQcs7fj6MGw89jC/cjGfLcNOrtMYtGqm81g==
+object-inspect@^1.12.3, object-inspect@^1.13.1:
+  version "1.13.2"
+  resolved "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.2.tgz"
+  integrity sha512-IRZSRuzJiynemAXPYtPe5BoI/RESNYR7TYm50MC5Mqbd3Jmw5y790sErYw3V6SryFJD64b74qQQs9wn5Bg/k3g==
 
 object-keys@^1.1.1:
   version "1.1.1"
@@ -3243,10 +3321,10 @@ object.assign@^4.1.4:
     has-symbols "^1.0.3"
     object-keys "^1.1.1"
 
-ohm-js@16.5.0:
-  version "16.5.0"
-  resolved "https://registry.npmjs.org/ohm-js/-/ohm-js-16.5.0.tgz"
-  integrity sha512-OXuB3g1cdP6vCyaGziLmihLkBrtfH9H9jmYp5nRqad093KVzkUSi062IVv5l+3SB/HIbMyDvBqhgR3Q3S+EEnw==
+ohm-js@^17.1.0:
+  version "17.1.0"
+  resolved "https://registry.npmjs.org/ohm-js/-/ohm-js-17.1.0.tgz"
+  integrity sha512-xc3B5dgAjTBQGHaH7B58M2Pmv6WvzrJ/3/7LeUzXNg0/sY3jQPdSd/S2SstppaleO77rifR1tyhdfFGNIwxf2Q==
 
 once@^1.3.0, once@^1.3.1, once@^1.4.0:
   version "1.4.0"
@@ -3357,10 +3435,10 @@ path-key@^3.0.0, path-key@^3.1.0:
   resolved "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz"
   integrity sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==
 
-path-normalize@^6.0.10:
-  version "6.0.10"
-  resolved "https://registry.npmjs.org/path-normalize/-/path-normalize-6.0.10.tgz"
-  integrity sha512-ZlQRW8CAmppOuQB6+dVvkmzk4wGZRDtUmHeV+/596Bm+TYcuiAGV8EACc6hhRw4j3rdv5PimDOshXCqerHAtEA==
+path-normalize@^6.0.13:
+  version "6.0.13"
+  resolved "https://registry.npmjs.org/path-normalize/-/path-normalize-6.0.13.tgz"
+  integrity sha512-PfC1Pc+IEhI77UEN731pj2nMs9gHAV36IA6IW6VdXWjoQesf+jtO9hdMUqTRS6mwR0T5rmyUrQzd5vw0VwL1Lw==
 
 path-parse@^1.0.7:
   version "1.0.7"
@@ -3493,12 +3571,12 @@ qrcode@^1.5.1:
     pngjs "^5.0.0"
     yargs "^15.3.1"
 
-qs@^6.11.0:
-  version "6.11.1"
-  resolved "https://registry.npmjs.org/qs/-/qs-6.11.1.tgz"
-  integrity sha512-0wsrzgTz/kAVIeuxSjnpGC56rzYtr6JT/2BwEvMaPhFIoYa1aGO8LbzuU1R0uUYQkLpWBTOj0l/CLAJB64J6nQ==
+qs@^6.12.1:
+  version "6.12.3"
+  resolved "https://registry.npmjs.org/qs/-/qs-6.12.3.tgz"
+  integrity sha512-AWJm14H1vVaO/iNZ4/hO+HyaTehuy9nRqVdkTqlJt0HWvBiBIEXFmb4C0DGeYo3Xes9rrEW+TxHsaigCbN5ICQ==
   dependencies:
-    side-channel "^1.0.4"
+    side-channel "^1.0.6"
 
 qs@~6.5.2:
   version "6.5.3"
@@ -3721,6 +3799,18 @@ set-blocking@^2.0.0:
   resolved "https://registry.npmjs.org/set-blocking/-/set-blocking-2.0.0.tgz"
   integrity sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==
 
+set-function-length@^1.2.1:
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/set-function-length/-/set-function-length-1.2.2.tgz"
+  integrity sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==
+  dependencies:
+    define-data-property "^1.1.4"
+    es-errors "^1.3.0"
+    function-bind "^1.1.2"
+    get-intrinsic "^1.2.4"
+    gopd "^1.0.1"
+    has-property-descriptors "^1.0.2"
+
 shebang-command@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz"
@@ -3733,14 +3823,15 @@ shebang-regex@^3.0.0:
   resolved "https://registry.npmjs.org/shebang-regex/-/shebang-regex-3.0.0.tgz"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
-side-channel@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/side-channel/-/side-channel-1.0.4.tgz"
-  integrity sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==
+side-channel@^1.0.4, side-channel@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/side-channel/-/side-channel-1.0.6.tgz"
+  integrity sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==
   dependencies:
-    call-bind "^1.0.0"
-    get-intrinsic "^1.0.2"
-    object-inspect "^1.9.0"
+    call-bind "^1.0.7"
+    es-errors "^1.3.0"
+    get-intrinsic "^1.2.4"
+    object-inspect "^1.13.1"
 
 signal-exit@^3.0.2, signal-exit@^3.0.3, signal-exit@^3.0.7:
   version "3.0.7"
@@ -3976,7 +4067,7 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-ton-core@^0.48.0, ton-core@>=0.27.0, ton-core@>=0.36.1, ton-core@>=0.47.1, ton-core@>=0.48.0:
+ton-core@>=0.36.1, ton-core@>=0.48.0:
   version "0.48.0"
   resolved "https://registry.npmjs.org/ton-core/-/ton-core-0.48.0.tgz"
   integrity sha512-v3QL0CC8iQQ0cjUN0lI9hK7wEpLW2Wnm+N5Ukm+NSbtQ0vq36LGQR/BRywoOQZJm59XzmW4ATbtCWeas9ePrRA==
@@ -4022,7 +4113,7 @@ ton-x@^2.1.0:
     ton "9.8.0"
     ton-crypto "^3.0.0"
 
-ton@^13.4.1, ton@>=13.4.1:
+ton@>=13.4.1:
   version "13.4.1"
   resolved "https://registry.npmjs.org/ton/-/ton-13.4.1.tgz"
   integrity sha512-VCHmGE8o1EJBp5JdKNiqjHW5hmUqSfSYYIsMfCje8/GA6sLzhhtMmznuGsrAQhM+MeEAUSt72SeI41z/wnu9MQ==
@@ -4109,11 +4200,6 @@ tunnel-agent@^0.6.0:
   integrity sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==
   dependencies:
     safe-buffer "^5.0.1"
-
-tvm-disassembler@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.npmjs.org/tvm-disassembler/-/tvm-disassembler-2.0.2.tgz"
-  integrity sha512-4EQg/uaJyu1UkBce/YU/jJqKWHAmJeCUPDz5Y+jeAXf01GiDTKju7PjVgu2Ai+xrpNM393vNUc8bJ6c+zf+CrA==
 
 tweetnacl-util@^0.15.1:
   version "0.15.1"
@@ -4414,7 +4500,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod@^3.20.2, zod@^3.21.4:
-  version "3.21.4"
-  resolved "https://registry.npmjs.org/zod/-/zod-3.21.4.tgz"
-  integrity sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==
+zod@^3.21.4, zod@^3.22.4:
+  version "3.23.8"
+  resolved "https://registry.npmjs.org/zod/-/zod-3.23.8.tgz"
+  integrity sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==

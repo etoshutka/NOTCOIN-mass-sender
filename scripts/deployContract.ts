@@ -1,12 +1,19 @@
-import { Address, toNano, Cell, beginCell } from 'ton-core';
-import { compile, NetworkProvider, sleep } from '@ton-community/blueprint';
+import { Address, toNano, Cell, beginCell } from '@ton/core';
+import { compile, NetworkProvider, sleep } from '@ton/blueprint';
 import { JettonDistributor, Msg } from '../wrappers/JettonDistr'; 
-import { TonClient } from 'ton';
+import { TonClient } from '@ton/ton';
 import { calculateJettonWalletAddress } from '../wrappers/MassSender';
 
-const JETTON_MINTER_ADDRESS: string = "kQA6FoYeKvpCXj5qz0Ct2q6s4gdVv-gYm3A-5UkCqQh4YlYu"; // Мастер-контракт жетона
 
-async function getJettonData(minterAddress: string): Promise<{ totalSupply: bigint, int:bigint, adminAddress: Address, content: Cell, walletCode: Cell }> {
+const JETTON_MINTER_ADDRESS: string = "EQAvlWFDxGF2lXm67y4yzC17wYKD9A0guwPkMs1gOsM__NOT"; // Мастер-контракт жетона
+
+async function getJettonData(minterAddress: string): Promise<{ 
+    totalSupply: bigint, 
+    int: bigint, 
+    adminAddress: Address | null, 
+    content: Cell, 
+    walletCode: Cell 
+}> {
     const client = new TonClient({
         endpoint: "https://toncenter.com/api/v2/jsonRPC",
     });
@@ -16,7 +23,13 @@ async function getJettonData(minterAddress: string): Promise<{ totalSupply: bigi
     
     const totalSupply = response.stack.readBigNumber();
     const int = response.stack.readBigNumber();
-    const adminAddress = response.stack.readAddress();
+    let adminAddress: Address | null;
+    try {
+        adminAddress = response.stack.readAddress();
+    } catch (error) {
+        console.log("Admin address is not set (probably 0). Setting to null.");
+        adminAddress = null;
+    }
     const content = response.stack.readCell();
     const walletCode = response.stack.readCell();
 
@@ -38,7 +51,7 @@ export async function process(provider: NetworkProvider, messages: Msg[], jetton
     console.log('Jetton Data:');
     console.log('Total Supply:', jettonCode.totalSupply.toString());
     console.log('Int', jettonCode.int.toString() )
-    console.log('Admin Address:', jettonCode.adminAddress.toString());
+    console.log('Admin Address:', jettonCode.adminAddress ? jettonCode.adminAddress.toString() : 'Not set');
     console.log('Content Hash:', jettonCode.content.hash().toString('hex'));
     console.log('Wallet Code Hash:', jettonCode.walletCode.hash().toString('hex'));
     
@@ -67,7 +80,7 @@ export async function process(provider: NetworkProvider, messages: Msg[], jetton
 export async function run(provider: NetworkProvider) {
     let rawMessages: RawMessage = require('./transactions.json');
     let messages: Msg[] = [];
-    const jettonMaster = Address.parse('kQA6FoYeKvpCXj5qz0Ct2q6s4gdVv-gYm3A-5UkCqQh4YlYu'); // Мастер-контракт жетона
+    const jettonMaster = Address.parse('EQAvlWFDxGF2lXm67y4yzC17wYKD9A0guwPkMs1gOsM__NOT'); // Мастер-контракт жетона
 
     for (const [addr, amount] of Object.entries(rawMessages)) {
         const destination = Address.parse(addr);

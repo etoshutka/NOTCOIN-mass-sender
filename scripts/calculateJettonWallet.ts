@@ -9,7 +9,7 @@ const BORROWER_ADDRESS: string = 'UQCeb909xRLezUdaPvwRS7UYd_KY8VOYaK_kEReuCskS1a
 export async function calculateJettonWalletAddress(minterAddress: string, ownerAddress: Address): Promise<string> {
 
     const client = new TonClient({
-        endpoint: "https://testnet.toncenter.com/api/v2/jsonRPC",
+        endpoint: "https://toncenter.com/api/v2/jsonRPC",
     });
     
     await sleep(1500);

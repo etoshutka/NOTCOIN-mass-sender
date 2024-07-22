@@ -1,5 +1,5 @@
 import { sleep } from '@ton-community/blueprint';
-import { TonClient } from 'ton';
+import { TonClient } from '@ton/ton';
 import {
     Address,
     beginCell,
@@ -12,7 +12,7 @@ import {
     Sender,
     SendMode,
     toNano,
-} from 'ton-core';
+} from '@ton/core';
 
 export type Msg = {
     value: bigint;

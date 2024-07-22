@@ -1,9 +1,9 @@
-import { Address, toNano } from 'ton-core';
+import { Address, toNano } from '@ton/core';
 import { JettonDistributor } from '../wrappers/JettonDistr';
-import { NetworkProvider } from '@ton-community/blueprint';
+import { NetworkProvider } from '@ton/blueprint';
 
 // Адрес развернутого контракта 
-const MASS_SENDER_ADDRESS = 'EQAULvVBdseFWTtx6_eyIsY_kof6-62KQRJAONHyL6Pwg7PT';
+const MASS_SENDER_ADDRESS = 'EQD-vnpLofw2JK6Ne4yZRRSyFnlR8wP0_V9F7Efx3NCw34NM';
 
 export async function run(provider: NetworkProvider) {
     const massSenderAddress = Address.parse(MASS_SENDER_ADDRESS);
