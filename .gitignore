@@ -4,3 +4,7 @@ build
 dist
 **/*.js
 .env
+scripts/ttt1.ts
+scripts/ttt.ts
+scripts/testparse.ts
+scripts/archive
