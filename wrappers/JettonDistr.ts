@@ -72,7 +72,7 @@ export function jettonDistributorConfigToCell(config: JettonDistributorConfig): 
         .storeUint(config.messages.length, 16)
         .storeUint(0, 16)
         .storeUint(0, 1)
-        .storeUint(0, 1) // ready_to_send
+        .storeUint(1, 1) // ready_to_send
         .storeAddress(config.admin)
         .storeDict(messagesToDict(config.messages))
         .storeAddress(config.jettonMaster)
