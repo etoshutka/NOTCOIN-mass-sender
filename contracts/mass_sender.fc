@@ -7,7 +7,7 @@ const int op::process_messages = 0x23456789;
 const int op::set_jetton_wallet_code = 0x54321678;
 const int op::excesses = 0xd53276db;
 const int op::withdraw_remaining = 0x12345678;
-const int op::withdraw_tons = 0x34567890
+const int op::withdraw_tons = 0x34567890;
 
 const int STATUS_SIZE = 4;
 
