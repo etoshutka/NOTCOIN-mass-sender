@@ -189,7 +189,6 @@ slice calculate_user_jetton_wallet_address(slice owner_address, slice jetton_mas
      if (op == op::withdraw_remaining) {
         throw_unless(104, equal_slices(sender, admin));
         throw_unless(105, ready_to_send != 0);
-        throw_unless(106, length == 0);
 
         int amount = in_msg_body~load_coins();
       
