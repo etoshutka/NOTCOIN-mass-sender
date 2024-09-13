@@ -100,6 +100,16 @@ export class MassSender implements Contract {
         });
     }
 
+    async sendWithdrawRemaining(provider: ContractProvider, via: Sender, params: { value: bigint }) {
+        await provider.internal(via, {
+            value: params.value,
+            sendMode: SendMode.PAY_GAS_SEPARATELY,
+            body: beginCell()
+                .storeUint(0x12345678, 32)
+                .endCell(),
+        });
+    }
+
     async sendStartSending(provider: ContractProvider, via: Sender, value: bigint) {
         await provider.internal(via, {
             value,

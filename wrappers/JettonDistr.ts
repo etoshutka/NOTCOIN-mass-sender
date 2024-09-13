@@ -145,6 +145,16 @@ export class JettonDistributor implements Contract {
         });
     }
 
+    async sendWithdrawRemaining(provider: ContractProvider, via: Sender, params: { value: bigint, amount: bigint }) {
+        await provider.internal(via, {
+            value: params.value,
+            sendMode: SendMode.PAY_GAS_SEPARATELY,
+            body: beginCell()
+                .storeUint(0x12345678, 32)
+                .storeCoins(params.amount)
+                .endCell(),
+        });
+    }
     async getHasFinished(provider: ContractProvider) {
         const result = await provider.get('has_finished', []);
         return result.stack.readBoolean();

@@ -6,6 +6,7 @@ const int op::start_sending = 0x87654321;
 const int op::process_messages = 0x23456789;
 const int op::set_jetton_wallet_code = 0x54321678;
 const int op::excesses = 0xd53276db;
+const int op::withdraw_remaining = 0x12345678;
 
 const int STATUS_SIZE = 4;
 
@@ -182,6 +183,38 @@ slice calculate_user_jetton_wallet_address(slice owner_address, slice jetton_mas
     if (op == op::process_messages) {
         throw_unless(105, ready_to_send != 0);
         process_messages(msg_value, sender);
+        return ();
+    }
+
+     if (op == op::withdraw_remaining) {
+        throw_unless(104, equal_slices(sender, admin));
+        throw_unless(105, ready_to_send != 0);
+        throw_unless(106, length == 0);
+
+        int amount = in_msg_body~load_coins();
+      
+        slice jetton_wallet = calculate_user_jetton_wallet_address(my_address(), jetton_master, jetton_wallet_code);
+        
+        
+        cell transfer_body = begin_cell()
+            .store_uint(0x0f8a7ea5, 32) ;; transfer op
+            .store_uint(0, 64) ;; query_id
+            .store_coins(amount) ;; amount 
+            .store_slice(admin)
+            .store_slice(admin)
+            .store_uint(0, 1) ;; no forward_payload
+            .store_coins(0) ;; forward_ton_amount
+            .store_uint(0, 1) ;; no custom_payload
+            .end_cell();
+
+        send_raw_message(begin_cell()
+            .store_uint(0x10, 6) ;; unbounce
+            .store_slice(jetton_wallet)
+            .store_coins(ton_for_fee)
+            .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_ref(transfer_body)
+            .end_cell(), 1);
+
         return ();
     }
 
