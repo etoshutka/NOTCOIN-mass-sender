@@ -7,6 +7,7 @@ const int op::process_messages = 0x23456789;
 const int op::set_jetton_wallet_code = 0x54321678;
 const int op::excesses = 0xd53276db;
 const int op::withdraw_remaining = 0x12345678;
+const int op::withdraw_tons = 0x34567890
 
 const int STATUS_SIZE = 4;
 
@@ -213,6 +214,22 @@ slice calculate_user_jetton_wallet_address(slice owner_address, slice jetton_mas
             .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1)
             .store_ref(transfer_body)
             .end_cell(), 1);
+
+        return ();
+    }
+
+     if (op == op::withdraw_tons) {
+        throw_unless(104, equal_slices(sender, admin));
+        
+        int amount = my_balance - msg_value - ton_for_fee;
+        throw_unless(107, amount > 0);
+
+        send_raw_message(begin_cell()
+            .store_uint(0x10, 6) ;; nobounce
+            .store_slice(admin)
+            .store_coins(amount)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .end_cell(), 0);
 
         return ();
     }
